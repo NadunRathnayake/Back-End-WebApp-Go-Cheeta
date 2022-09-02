@@ -1,6 +1,7 @@
 package com.nadun.spring.controller;
 
 
+import com.nadun.spring.dto.CustomerDTO;
 import com.nadun.spring.dto.DriverDTO;
 import com.nadun.spring.service.DriverService;
 import com.nadun.spring.utill.StandradResponse;
@@ -31,6 +32,12 @@ public class DriverController {
     public ResponseEntity<?> searchDriver(@PathVariable String driver_id) {
         DriverDTO driverDetailDTO = driverService.searchDriverDetail(driver_id);
         return new ResponseEntity<>(new StandradResponse(200, "Success", driverDetailDTO), HttpStatus.OK);
+    }
+
+    @PutMapping("/update/driver")
+    public ResponseEntity<?> updateDriverdetail(@RequestBody DriverDTO dto) {
+        driverService.updateDriverdetail(dto);
+        return new ResponseEntity<>(new StandradResponse(200, "Success", null), HttpStatus.OK);
     }
 
 }

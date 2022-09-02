@@ -46,4 +46,15 @@ public class DriverServiceImpl implements DriverService {
             throw new RuntimeException("No Driver for id: " + driver_id);
         }
     }
+
+    @Override
+    public void updateDriverdetail(DriverDTO dto) {
+        if (repo.existsById(dto.getDriver_id())) {
+            Driver c = mapper.map(dto, Driver.class);
+            repo.save(c);
+        } else {
+            throw new RuntimeException("Invalid Update..!");
+        }
+    }
+
 }
