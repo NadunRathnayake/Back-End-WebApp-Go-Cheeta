@@ -40,4 +40,16 @@ public class DriverController {
         return new ResponseEntity<>(new StandradResponse(200, "Success", null), HttpStatus.OK);
     }
 
+    @DeleteMapping( "/delete/driver/{driver_id}")
+    public ResponseEntity<?> deleteDriver(@PathVariable String driver_id) {
+        driverService.deleteDriver(driver_id);
+        return new ResponseEntity<>(new StandradResponse(200, "Success", null), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/view/driver-list")
+    public ResponseEntity<?> allDriverList() {
+        List<DriverDTO> allDriverList = driverService.getallDriverList();
+        return new ResponseEntity<>(new StandradResponse(200, "Success", allDriverList), HttpStatus.OK);
+    }
+
 }

@@ -26,7 +26,8 @@ public class DriverServiceImpl implements DriverService {
     @Autowired
     private DriverRepo repo;
 
-    @Autowired ModelMapper mapper;
+    @Autowired
+    ModelMapper mapper;
 
     @Override
     public void addDriver(DriverDTO dto) {
@@ -57,4 +58,20 @@ public class DriverServiceImpl implements DriverService {
         }
     }
 
+    @Override
+    public void deleteDriver(String driver_id) {
+        if (repo.existsById(driver_id)) {
+            repo.deleteById(driver_id);
+        } else {
+            throw new RuntimeException("No customer for delete ID: " + driver_id);
+        }
+
+    }
+
+    @Override
+    public List<DriverDTO> getallDriverList() {
+        List<Driver> all = repo.findAll();
+        return mapper.map(all, new TypeToken<List<DriverDTO>>() {
+        }.getType());
+    }
 }
