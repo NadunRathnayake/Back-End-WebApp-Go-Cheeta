@@ -63,7 +63,7 @@ public class DriverServiceImpl implements DriverService {
         if (repo.existsById(driver_id)) {
             repo.deleteById(driver_id);
         } else {
-            throw new RuntimeException("No customer for delete ID: " + driver_id);
+            throw new RuntimeException("No Driver for delete ID: " + driver_id);
         }
 
     }
