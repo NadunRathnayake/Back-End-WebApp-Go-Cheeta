@@ -25,4 +25,12 @@ public class BranchController {
         StandradResponse response = new StandradResponse(200, "Success", null);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+    @GetMapping(path = "/branch/{branch_code}")
+    public ResponseEntity<?> searchCustomer(@PathVariable String branch_code) {
+        BranchDTO branchDetailDTO = branchService.searchBranchDet(branch_code);
+        return new ResponseEntity<>(new StandradResponse(200, "Success", branchDetailDTO), HttpStatus.OK);
+    }
+
+
 }
