@@ -28,6 +28,7 @@ public class BranchServiceImpl implements BranchService {
 
     @Autowired
     private ModelMapper mapper;
+
     public void addBranch(BranchDTO dto) {
         if (!repo.existsById(dto.getBranch_code())) {
             Branch c = mapper.map(dto, Branch.class);

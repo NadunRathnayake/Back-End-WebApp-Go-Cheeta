@@ -1,8 +1,6 @@
 package com.nadun.spring.controller;
 
 import com.nadun.spring.dto.BranchDTO;
-import com.nadun.spring.dto.CustomerDTO;
-import com.nadun.spring.dto.DriverDTO;
 import com.nadun.spring.service.BranchService;
 import com.nadun.spring.utill.StandradResponse;
 import org.springframework.beans.factory.annotation.Autowired;

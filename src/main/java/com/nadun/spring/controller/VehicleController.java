@@ -1,6 +1,5 @@
 package com.nadun.spring.controller;
 
-import com.nadun.spring.dto.DriverDTO;
 import com.nadun.spring.dto.VehicleDTO;
 import com.nadun.spring.service.VehicleService;
 import com.nadun.spring.utill.StandradResponse;
