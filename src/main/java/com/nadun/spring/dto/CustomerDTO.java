@@ -15,5 +15,6 @@ public class CustomerDTO {
     private String street ;
     private String city;
     private String code ;
+    private String password;
 
 }

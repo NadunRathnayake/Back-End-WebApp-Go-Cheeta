@@ -20,5 +20,6 @@ public class Customer {
     private String street ;
     private String city;
     private String code ;
+    private String password;
 
 }

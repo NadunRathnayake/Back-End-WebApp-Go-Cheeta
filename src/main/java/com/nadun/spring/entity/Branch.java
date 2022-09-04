@@ -12,13 +12,9 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Driver {
+public class Branch {
     @Id
-    private String driver_id;
-    private String f_name;
-    private String l_name ;
-    private String phone_no;
     private String branch_code;
-    private String vehicle_no;
-    private String password;
+    private String branch_name;
+    private String city;
 }
