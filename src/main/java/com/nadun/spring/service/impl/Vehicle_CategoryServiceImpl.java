@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -51,6 +52,25 @@ public class Vehicle_CategoryServiceImpl implements Vehicle_CategoryService {
             repo.deleteById(category_id);
         } else {
             throw new RuntimeException("No Vehicle Category for delete ID: " + category_id);
+        }
+    }
+
+    @Override
+    public void updateCategorydetail(Vehicle_CategoryDTO dto) {
+        if (repo.existsById(dto.getCategory_id())) {
+            Vehicle_Category c = mapper.map(dto, Vehicle_Category.class);
+            repo.save(c);
+        } else {
+            throw new RuntimeException("Invalid Update..!");
+        }
+    }
+
+    public Vehicle_CategoryDTO searchCategories(String category_id) {
+        Optional<Vehicle_Category> vehicleCategories = repo.findById(category_id);
+        if (vehicleCategories.isPresent()) {
+            return mapper.map(vehicleCategories.get(), Vehicle_CategoryDTO.class);
+        } else {
+            throw new RuntimeException("No Vehicle Category for id: " + category_id);
         }
     }
 }

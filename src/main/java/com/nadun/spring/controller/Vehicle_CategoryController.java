@@ -40,4 +40,16 @@ public class Vehicle_CategoryController {
         return new ResponseEntity<>(new StandradResponse(200, "Success", null), HttpStatus.CREATED);
     }
 
+    @PutMapping("/update/category")
+    public ResponseEntity<?> updateCategorydetail(@RequestBody Vehicle_CategoryDTO dto) {
+        vehicle_categoryService.updateCategorydetail(dto);
+        return new ResponseEntity<>(new StandradResponse(200, "Success", null), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/search/category/{category_id}")
+    public ResponseEntity<?> searchCategory(@PathVariable String category_id) {
+        Vehicle_CategoryDTO categoryDetailsDTO = vehicle_categoryService.searchCategories(category_id);
+        return new ResponseEntity<>(new StandradResponse(200, "Success", categoryDetailsDTO), HttpStatus.OK);
+    }
+
 }
