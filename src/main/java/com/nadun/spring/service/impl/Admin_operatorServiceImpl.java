@@ -1,9 +1,7 @@
 package com.nadun.spring.service.impl;
 
 import com.nadun.spring.dto.Admin_operatorDTO;
-import com.nadun.spring.dto.BranchDTO;
 import com.nadun.spring.entity.Admin_operator;
-import com.nadun.spring.entity.Branch;
 import com.nadun.spring.repo.Admin_operatorRepo;
 import com.nadun.spring.service.Admin_operatorService;
 import lombok.extern.slf4j.Slf4j;

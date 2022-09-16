@@ -35,7 +35,7 @@ public class DriverServiceImpl implements DriverService {
             Driver c = mapper.map(dto, Driver.class);
             repo.save(c);
         } else {
-            throw new RuntimeException("Book already exist..!");
+            throw new RuntimeException("Driver is already Registered..!");
         }
     }
 
