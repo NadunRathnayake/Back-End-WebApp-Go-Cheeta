@@ -1,6 +1,7 @@
 package com.nadun.spring.service;
 
 import com.nadun.spring.dto.CustomerDTO;
+import com.nadun.spring.dto.LoginDTO;
 
 import java.util.List;
 
@@ -10,6 +11,9 @@ public interface CustomerService {
      List<CustomerDTO> getAllCustDet();
      void updateCustdetail(CustomerDTO dto);
      void deleteCustomerDetail(String nic);
+
+     boolean login(String username, String password, String usertype);
+//     void checkCustomerLogin(CustomerDTO dto);
 }
 
 

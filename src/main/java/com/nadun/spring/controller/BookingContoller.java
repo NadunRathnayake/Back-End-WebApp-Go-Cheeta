@@ -2,10 +2,6 @@ package com.nadun.spring.controller;
 
 
 import com.nadun.spring.dto.BookingDTO;
-import com.nadun.spring.dto.BranchDTO;
-import com.nadun.spring.dto.CustomerDTO;
-import com.nadun.spring.dto.DriverDTO;
-import com.nadun.spring.entity.Booking;
 import com.nadun.spring.service.BookingService;
 import com.nadun.spring.utill.StandradResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/go-cheeta")
 @CrossOrigin
-
 public class BookingContoller {
 
     @Autowired
@@ -43,10 +38,16 @@ public class BookingContoller {
         return new ResponseEntity<>(new StandradResponse(200, "Success", null), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/booking/{cust_id}")
-    public ResponseEntity<?> searchBooking(@PathVariable String cust_id) {
-        BookingDTO bookingDetailDTO = bookingService.searchBookingDet(cust_id);
+    @GetMapping(path = "/booking/{booking_id}")
+    public ResponseEntity<?> searchBooking(@PathVariable String booking_id) {
+        BookingDTO bookingDetailDTO = bookingService.searchBookingDet(booking_id);
         return new ResponseEntity<>(new StandradResponse(200, "Success", bookingDetailDTO), HttpStatus.OK);
+    }
+
+    @DeleteMapping( "/delete/booking/{booking_id}")
+    public ResponseEntity<?> deleteBooking(@PathVariable String booking_id) {
+        bookingService.deleteBooking(booking_id);
+        return new ResponseEntity<>(new StandradResponse(200, "Success", null), HttpStatus.CREATED);
     }
 
 }

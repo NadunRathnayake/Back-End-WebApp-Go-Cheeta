@@ -11,6 +11,7 @@ public interface BookingService {
     void addBooking (BookingDTO dto);
     List<BookingDTO>getallbookDetails();
     void updateBookingDetail(BookingDTO dto);
-    BookingDTO searchBookingDet(String cust_id);
+    BookingDTO searchBookingDet(String booking_id);
+    void deleteBooking(String booking_id);
 
 }

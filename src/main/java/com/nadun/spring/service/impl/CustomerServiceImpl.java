@@ -1,8 +1,13 @@
 package com.nadun.spring.service.impl;
 
 import com.nadun.spring.dto.CustomerDTO;
+import com.nadun.spring.dto.LoginDTO;
+import com.nadun.spring.entity.Admin_operator;
 import com.nadun.spring.entity.Customer;
+import com.nadun.spring.entity.Driver;
+import com.nadun.spring.repo.Admin_operatorRepo;
 import com.nadun.spring.repo.CustomerRepo;
+import com.nadun.spring.repo.DriverRepo;
 import com.nadun.spring.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -23,7 +28,14 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerRepo repo;
 
     @Autowired
+    private Admin_operatorRepo admin_operatorRepo;
+
+    @Autowired
+    private DriverRepo driverRepo;
+
+    @Autowired
     private ModelMapper mapper;
+
     public void addCustomer(CustomerDTO dto) {
         if (!repo.existsById(dto.getNic())) {
             Customer c = mapper.map(dto, Customer.class);
@@ -32,6 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
             throw new RuntimeException("Customer Already exist..!");
         }
     }
+
     @Override
     public CustomerDTO searchCustDetail(String nic) {
         Optional<Customer> customerDetail = repo.findById(nic);
@@ -69,4 +82,43 @@ public class CustomerServiceImpl implements CustomerService {
 
     }
 
+    @Override
+    public boolean login(String username, String password, String usertype) {
+        if(repo.existsByNic(username) && usertype.equals("CUSTOMER")){
+            Customer customer = repo.findByNic(username);
+            if(customer.getPassword().equals(password)){
+                return true;
+            }else{
+                return false;
+            }
+        }else if(driverRepo.existsByDriverId(username) && usertype.equals("DRIVER")){
+            Driver driver = driverRepo.findByDriverId(username);
+            if(driver.getPassword().equals(password)){
+                return true;
+            }else{
+                return false;
+            }
+        }else if(admin_operatorRepo.existsByOperatorId(username) && usertype.equals("ADMIN")){
+            Admin_operator admin_operator = admin_operatorRepo.findByOperatorId(username);
+            if(admin_operator.getPassword().equals(password)){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
 }
+
+//    @Override
+//    public void checkCustomerLogin(CustomerDTO dto) {
+//        if (repo.existsById(dto.getNic())) {
+//          if ()
+//            System.out.println("test done");
+//        } else {
+//            System.out.println("fail test");
+//        }
+//    }
+//}
+ //select password from customer where nic = dto.getNic

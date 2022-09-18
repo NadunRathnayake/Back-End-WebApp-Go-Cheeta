@@ -28,7 +28,7 @@ public class BookingServiceImpl implements BookingService {
     private ModelMapper mapper;
 
     public void addBooking(BookingDTO dto) {
-        if (!repo.existsById(dto.getCust_id())) {
+        if (!repo.existsById(dto.getBooking_id())) {
             Booking c = mapper.map(dto, Booking.class);
             repo.save(c);
         } else {
@@ -46,7 +46,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public void updateBookingDetail(BookingDTO dto) {
-        if (repo.existsById(dto.getCust_id())) {
+        if (repo.existsById(dto.getBooking_id())) {
             Booking c = mapper.map(dto, Booking.class);
             repo.save(c);
         } else {
@@ -55,13 +55,23 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public BookingDTO searchBookingDet(String cust_id) {
-        Optional<Booking> bookingDetails = repo.findById(cust_id);
+    public BookingDTO searchBookingDet(String booking_id) {
+        Optional<Booking> bookingDetails = repo.findById(booking_id);
         if (bookingDetails.isPresent()) {
             return mapper.map(bookingDetails.get(), BookingDTO.class);
         } else {
-            throw new RuntimeException("No Branch for id: " + cust_id);
+            throw new RuntimeException("No Booking for id: " + booking_id);
         }
+    }
+
+    @Override
+    public void deleteBooking(String booking_id) {
+        if (repo.existsById(booking_id)) {
+            repo.deleteById(booking_id);
+        } else {
+            throw new RuntimeException("No Booking for delete ID: " + booking_id);
+        }
+
     }
 
 }

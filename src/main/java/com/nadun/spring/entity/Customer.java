@@ -16,10 +16,10 @@ public class Customer {
     private String nic;
     private String f_name;
     private String l_name;
-    private String  phone_no;
-    private String street ;
+    private String phone_no;
+    private String street;
     private String city;
-    private String code ;
+    private String code;
     private String password;
 
 }

@@ -1,6 +1,7 @@
 package com.nadun.spring.controller;
 
 import com.nadun.spring.dto.CustomerDTO;
+import com.nadun.spring.dto.LoginDTO;
 import com.nadun.spring.service.CustomerService;
 import com.nadun.spring.utill.StandradResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,18 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
+//    @PostMapping("/login")
+//    public ResponseEntity<?> checkCustomerLogin(@RequestBody CustomerDTO dto) {
+//        customerService.checkCustomerLogin(dto);
+//        StandradResponse response = new StandradResponse(200, "Success", null);
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//    }
+
     @PostMapping("/save")
     public ResponseEntity<?> addCustomer(@RequestBody CustomerDTO dto) {
         customerService.addCustomer(dto);
         StandradResponse response = new StandradResponse(200, "Success", null);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 
@@ -47,6 +55,13 @@ public class CustomerController {
     public ResponseEntity<?> deleteCustomerDetail(@PathVariable String nic) {
         customerService.deleteCustomerDetail(nic);
         return new ResponseEntity<>(new StandradResponse(200, "Success", null), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> addCustomer(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("usertype") String usertype) {
+        boolean isLoged = customerService.login(username,password,usertype);
+//        StandradResponse response = new StandradResponse(200, "Success", null);
+        return new ResponseEntity<>(isLoged, HttpStatus.OK);
     }
 
 

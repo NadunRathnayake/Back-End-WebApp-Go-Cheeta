@@ -13,7 +13,7 @@ import javax.persistence.Id;
 
 public class Admin_operator {
     @Id
-    private String operator_id;
+    private String operatorId;
     private String first_name;
     private String last_name;
     private String password;

@@ -31,7 +31,7 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public void addDriver(DriverDTO dto) {
-        if (!repo.existsById(dto.getDriver_id())) {
+        if (!repo.existsById(dto.getDriverId())) {
             Driver c = mapper.map(dto, Driver.class);
             repo.save(c);
         } else {
@@ -39,18 +39,18 @@ public class DriverServiceImpl implements DriverService {
         }
     }
 
-    public DriverDTO searchDriverDetail(String driver_id) {
-        Optional<Driver> driverDetail = repo.findById(driver_id);
+    public DriverDTO searchDriverDetail(String driverId) {
+        Optional<Driver> driverDetail = repo.findById(driverId);
         if (driverDetail.isPresent()) {
             return mapper.map(driverDetail.get(), DriverDTO.class);
         } else {
-            throw new RuntimeException("No Driver for id: " + driver_id);
+            throw new RuntimeException("No Driver for id: " + driverId);
         }
     }
 
     @Override
     public void updateDriverdetail(DriverDTO dto) {
-        if (repo.existsById(dto.getDriver_id())) {
+        if (repo.existsById(dto.getDriverId())) {
             Driver c = mapper.map(dto, Driver.class);
             repo.save(c);
         } else {
