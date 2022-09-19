@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Admin_operatorRepo extends JpaRepository<Admin_operator, String> {
-    boolean existsByOperatorId(String username);
-
+ boolean existsByOperatorId(String username);
+//
     Admin_operator findByOperatorId(String username);
 }

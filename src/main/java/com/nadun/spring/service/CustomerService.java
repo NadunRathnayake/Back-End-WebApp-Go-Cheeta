@@ -13,7 +13,7 @@ public interface CustomerService {
      void deleteCustomerDetail(String nic);
 
      boolean login(String username, String password, String usertype);
-//     void checkCustomerLogin(CustomerDTO dto);
+
 }
 
 

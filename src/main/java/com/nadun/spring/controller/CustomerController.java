@@ -21,7 +21,7 @@ public class CustomerController {
 //    @PostMapping("/login")
 //    public ResponseEntity<?> checkCustomerLogin(@RequestBody CustomerDTO dto) {
 //        customerService.checkCustomerLogin(dto);
-//        StandradResponse response = new StandradResponse(200, "Success", null);
+////        StandradResponse response = new StandradResponse(200, "Success", null);
 //        return new ResponseEntity<>(response, HttpStatus.OK);
 //    }
 
@@ -33,7 +33,7 @@ public class CustomerController {
     }
 
 
-    @GetMapping(path = "{nic}")
+    @GetMapping(path = "/customer/search/{nic}")
     public ResponseEntity<?> searchCustomer(@PathVariable String nic) {
         CustomerDTO custDetailDTO = customerService.searchCustDetail(nic);
         return new ResponseEntity<>(new StandradResponse(200, "Success", custDetailDTO), HttpStatus.OK);
@@ -60,7 +60,7 @@ public class CustomerController {
     @PostMapping("/login")
     public ResponseEntity<?> addCustomer(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("usertype") String usertype) {
         boolean isLoged = customerService.login(username,password,usertype);
-//        StandradResponse response = new StandradResponse(200, "Success", null);
+//       StandradResponse response = new StandradResponse(200, "Success", null);
         return new ResponseEntity<>(isLoged, HttpStatus.OK);
     }
 

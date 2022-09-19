@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,6 +85,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public boolean login(String username, String password, String usertype) {
+
+        BigInteger ss = driverRepo.existsByDriverId(username);
+
+
         if(repo.existsByNic(username) && usertype.equals("CUSTOMER")){
             Customer customer = repo.findByNic(username);
             if(customer.getPassword().equals(password)){
@@ -91,7 +96,7 @@ public class CustomerServiceImpl implements CustomerService {
             }else{
                 return false;
             }
-        }else if(driverRepo.existsByDriverId(username) && usertype.equals("DRIVER")){
+        }else if(driverRepo.existsByDriverId(username).equals(new BigInteger("1")) && usertype.equals("DRIVER")){
             Driver driver = driverRepo.findByDriverId(username);
             if(driver.getPassword().equals(password)){
                 return true;

@@ -10,10 +10,8 @@ import java.util.Optional;
 @Repository
 public interface CustomerRepo extends JpaRepository<Customer, String> {
     //Optional<Customer> findByNic(String nic);
-
-    boolean existsByNic(String nic);
-
     //boolean existByNic();
 
+    boolean existsByNic(String nic);
     Customer findByNic(String nic);
 }
