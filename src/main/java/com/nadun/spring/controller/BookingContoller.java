@@ -44,6 +44,13 @@ public class BookingContoller {
         return new ResponseEntity<>(new StandradResponse(200, "Success", bookingDetailDTO), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/booking/driver/{driver_id}")
+    public ResponseEntity<?> searchBookingDriver(@PathVariable String driver_id) {
+        BookingDTO bookingDetailDTO = bookingService.searchBookingDetDR(driver_id);
+        return new ResponseEntity<>(new StandradResponse(200, "Success", bookingDetailDTO), HttpStatus.OK);
+    }
+
+
     @DeleteMapping( "/delete/booking/{booking_id}")
     public ResponseEntity<?> deleteBooking(@PathVariable String booking_id) {
         bookingService.deleteBooking(booking_id);

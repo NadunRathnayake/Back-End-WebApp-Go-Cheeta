@@ -64,6 +64,9 @@ public class BookingServiceImpl implements BookingService {
         }
     }
 
+
+
+
     @Override
     public void deleteBooking(String booking_id) {
         if (repo.existsById(booking_id)) {
@@ -72,6 +75,16 @@ public class BookingServiceImpl implements BookingService {
             throw new RuntimeException("No Booking for delete ID: " + booking_id);
         }
 
+    }
+
+    @Override
+    public BookingDTO searchBookingDetDR(String driver_id) {
+        Optional<Booking> bookingDetails = repo.findById(driver_id);
+        if (bookingDetails.isPresent()) {
+            return mapper.map(bookingDetails.get(), BookingDTO.class);
+        } else {
+            throw new RuntimeException("No Booking for : " + driver_id);
+        }
     }
 
 }
